@@ -2,9 +2,9 @@
 
 <img alt="Logo" src="public/imgs/round.png" width="100"/>
 
-![GitHub Release](https://img.shields.io/github/v/release/Taureon/aps-plus-plus)
+![GitHub Release](https://img.shields.io/github/v/release/AE0Hello/open-source-arras)
 ![Discord](https://img.shields.io/discord/1004907608018264094)
-![GitHub repo size](https://img.shields.io/github/repo-size/Taureon/aps-plus-plus)
+![GitHub repo size](https://img.shields.io/github/repo-size/AE0Hello/open-source-arras)
 # WARNING
 This version has a bit of shit codes and will be fixed in the next beta. Or fix it by yourself.
 #
