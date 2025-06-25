@@ -875,6 +875,10 @@ exports.makeRarities = (type) => {
     }
 }
 
+exports.calcAspect = (oWidth /*Original*/ , eWidth /*expected*/ ) => {
+    return eWidth / oWidth
+}
+
 //merry Christmas
 exports.makePresent = (outcolor, wrapcolor) => {
     return {
