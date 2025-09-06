@@ -19,9 +19,8 @@ const requires = [
     "../Game/entities/bulletEntity.js", // The Entity constructor but with heavy limitations.
     "../Game/entities/entity.js", // The actual Entity constructor.
     // Definitions
-    "../lib/definitions/combined.js", // Get definitions.
+    "../lib/definitions/combined.js", // Get the definitions loader.
     // Room setup
-    "./roomLoader.js", // Now lets load the rework room setup. (by AE)
     "../miscFiles/tileEntity.js", // What this does, It creates tiles for the room setup.
     // Mockups
     "../miscFiles/mockups.js", // This file loads the mockups.
@@ -32,7 +31,23 @@ for (let file of requires) {
     for (let key in module) if (module.hasOwnProperty(key)) global[key] = module[key];
 }
 
+// Define room loader
+let fs = require('fs'),
+	path = require('path'),
+	groups = fs.readdirSync(path.resolve(__dirname, '../Game/room_setup/tiles/')),
+    loadRooms = (log = false) => {
+        // Now we need to define every tile.
+        if (Config.LOGS && log) console.log(`Importing tile definitions...`);
+        for (let filename of groups) {
+            if (Config.LOGS && log) console.log(`Loading tile file: ${filename}`);
+            require('../Game/room_setup/tiles/' + filename);
+        }
+
+        if (log) console.log("Successfully imported tile definitions.\n");
+    };
+
 module.exports = {
+    loadRooms,
     creationDate: new Date(),
     creationTime: new Date().getTime()
 };

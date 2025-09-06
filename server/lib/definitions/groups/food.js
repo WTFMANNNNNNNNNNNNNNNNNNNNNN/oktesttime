@@ -11,6 +11,7 @@ Class.egg = {
     SIZE: 4.5,
     COLOR: "veryLightGrey",
     INTANGIBLE: true,
+    VISIBLE_ON_BLACKOUT: true,
     BODY: {
         DAMAGE: 0,
         DENSITY: 2,

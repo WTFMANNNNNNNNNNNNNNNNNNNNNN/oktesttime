@@ -874,6 +874,9 @@ exports.makeRarities = (type) => {
         Class[pn] = exports.makeRare(`${type}`, [i]);
     }
 }
+exports.calcAspect = (oWidth /*Original*/ , eWidth /*expected*/ ) => {
+    return eWidth / oWidth
+}
 
 //merry Christmas
 exports.makePresent = (outcolor, wrapcolor) => {

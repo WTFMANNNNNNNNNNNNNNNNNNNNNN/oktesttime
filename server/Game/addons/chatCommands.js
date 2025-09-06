@@ -90,31 +90,31 @@ let commands = [
                     "- $ arena spawnpoint [x] [y] - Set a location where all players spawn on default",
                     "- $ arena close - Close the arena",
                 ];
-                if (!gameManager.gameSettings.SANDBOX) lines.splice(1, 1)
+                if (!Config.SANDBOX) lines.splice(1, 1)
                 socket.talk("Em", 10_000, JSON.stringify(lines));
             }
             if (!args[0]) sendAvailableArenaMessage(); else {
                 if (args[0] == "size") {
                     if (args[1] == "dynamic") {
-                        if (!gameManager.gameSettings.SANDBOX) return socket.talk("m", 3_000, "This command is only available on sandbox.");
+                        if (!Config.SANDBOX) return socket.talk("m", 3_000, "This command is only available on sandbox.");
                         gameManager.room.settings.sandbox.do_not_change_arena_size = false;
                     } else {
                         if (!args[1]) return socket.talk("m", 3_000, "Invalid arguments.");
                         if (!args[2]) return socket.talk("m", 3_000, "Invalid arguments.");
                         if (args[1] % 2 === 0 && args[2] % 2 === 0) {
-                            if (gameManager.gameSettings.SANDBOX) gameManager.room.settings.sandbox.do_not_change_arena_size = true;
+                            if (Config.SANDBOX) gameManager.room.settings.sandbox.do_not_change_arena_size = true;
                             gameManager.updateBounds(args[1] * 30, args[2] * 30);
                         } else socket.talk("m", 3_000, "Arena size must be even.");
                     }
                 } else if (args[0] == "team") {
                     if (!args[1]) return socket.talk("m", 3_000, "Invalid argument.");
                     if (args[1] == "0") {
-                        gameManager.gameSettings.MODE = "ffa";
-                        gameManager.gameSettings.TEAMS = null;
+                        Config.MODE = "ffa";
+                        Config.TEAMS = null;
                         socket.rememberedTeam = undefined;
                     } else {
-                        gameManager.gameSettings.MODE = "tdm";
-                        gameManager.gameSettings.TEAMS = args[1];
+                        Config.MODE = "tdm";
+                        Config.TEAMS = args[1];
                         socket.rememberedTeam = undefined;
                     }
                 } else if (args[0] == "spawnpoint") {
@@ -172,7 +172,7 @@ let commands = [
                 Class = {};
 
                 // Log it.
-                util.warn(`[IMPORTANT] Definitions are going to be reloaded on server ${gameManager.gamemode} (${gameManager.serverProperties.id})!`);
+                util.warn(`[IMPORTANT] Definitions are going to be reloaded on server ${gameManager.gamemode} (${gameManager.webProperties.id})!`);
 
                 // Purge all cache entries of every file in definitions
                 for (let file in require.cache) {
@@ -192,7 +192,7 @@ let commands = [
                 };
 
                 // Redefine all tanks and bosses
-                for (let entity of entities) {
+                for (let entity of entities.values()) {
                     // If it's a valid type and it's not a turret
                     if (!['tank', 'miniboss', 'food'].includes(entity.type)) continue;
                     if (entity.bond) continue;
@@ -204,7 +204,7 @@ let commands = [
                     // Redefine all properties and update values to match
                     entity.upgrades = [];
                     entity.define(entityDefs);
-                    for (let instance of entities) {
+                    for (let instance of entities.values()) {
                         if (
                             instance.settings.clearOnMasterUpgrade &&
                             instance.master.id === entity.id
@@ -231,13 +231,18 @@ let commands = [
                     // Erase cached mockups for each connected clients.
                     gameManager.clients.forEach(socket => {
                         socket.status.mockupData = socket.initMockupList();
+                        socket.status.selectedLeaderboard2 = socket.status.selectedLeaderboard;
+                        socket.status.selectedLeaderboard = "stop";
                         socket.talk("RE"); // Also reset the global.entities in client so it can refresh.
                         if (Config.LOAD_ALL_MOCKUPS) for (let i = 0; i < mockupData.length; i++) {
                             socket.talk("M", mockupData[i].index, JSON.stringify(mockupData[i]));
                         }
+                        socket.status.selectedLeaderboard = socket.status.selectedLeaderboard2;
+                        delete socket.status.selectedLeaderboard2;
+                        socket.talk("CC"); // Clear cache
                     });
                     // Log it again.
-                    util.warn(`[IMPORTANT] Definitions are successfully reloaded on server ${gameManager.gamemode} (${gameManager.serverProperties.id})!`);
+                    util.warn(`[IMPORTANT] Definitions are successfully reloaded on server ${gameManager.gamemode} (${gameManager.webProperties.id})!`);
                     gameManager.gameHandler.run();
                 }, 1000)
             } else socket.talk("m", 4_000, "Unknown subcommand, here's a help list."), sendAvailableDevCommandsMessage();

@@ -15,6 +15,7 @@ function getMockup(e, positionInfo) {
         glow: e.glow,
         borderless: e.borderless,
         drawFill: e.drawFill,
+        visibleOnBlackout: e.visibleOnBlackout,
         shape: e.shapeData,
         imageInterpolation: e.imageInterpolation,
         size: util.rounder(e.size),
@@ -47,14 +48,26 @@ function getMockup(e, positionInfo) {
             };
         }),
         turrets: turretsAndProps.map(function(t) {
+            // Merge turrets and props for the entity images.
             let out = getMockup(t, {});
             out.sizeFactor = util.rounder(t.bound.size);
             out.offset = util.rounder(t.bound.offset);
             out.direction = util.rounder(t.bound.direction);
             out.layer = util.rounder(t.bound.layer);
             out.angle = util.rounder(t.bound.angle);
+            out.isProp = t.isProp;
             return out;
         }),
+        props: e.props.map(function(p) {
+            let out = getMockup(p, {});
+            out.sizeFactor = util.rounder(p.bound.size);
+            out.offset = util.rounder(p.bound.offset);
+            out.direction = util.rounder(p.bound.direction);
+            out.layer = util.rounder(p.bound.layer);
+            out.angle = util.rounder(p.bound.angle);
+            out.isProp = true;
+            return out;
+        })
     };
 }
 

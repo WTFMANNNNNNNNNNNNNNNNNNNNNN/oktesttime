@@ -1,7 +1,5 @@
 class tileEntity {
-    constructor(tile, loc, gameManager) {
-        // Lets check if the gameManager is defined properly by calling this function.
-        gameManager = ensureIsManager(gameManager);
+    constructor(tile, loc) {
         // Lets check if an tile is an definition. If not tell them about it.
         if (!(tile instanceof Tile)) {
             console.error(`Tile Class definition ${loc.x},${loc.y} is attempted to be gotton but does not exist! wich you means need to update your room setup!`);
@@ -15,9 +13,9 @@ class tileEntity {
         };
 
         // Now lets add stuff.
-        this.gameManager = gameManager;
         this.bluePrint = tile.args;
         this.color = tile.color;
+        this.visibleOnBlackout = tile.visibleOnBlackout;
         this.name = tile.name;
         this.image = tile.image ?? undefined;
         this.init = tile.init;
@@ -27,8 +25,8 @@ class tileEntity {
     }
     randomInside() { // What this does is it spawns an entity in a random location inside that tile.
         return {
-            x: this.gameManager.room.tileWidth * (this.gridLoc.x + Math.random()) - this.gameManager.room.width / 2,
-            y: this.gameManager.room.tileHeight * (this.gridLoc.y + Math.random()) - this.gameManager.room.height / 2
+            x: global.gameManager.room.tileWidth * (this.gridLoc.x + Math.random()) - global.gameManager.room.width / 2,
+            y: global.gameManager.room.tileHeight * (this.gridLoc.y + Math.random()) - global.gameManager.room.height / 2
         }
     }
 };
