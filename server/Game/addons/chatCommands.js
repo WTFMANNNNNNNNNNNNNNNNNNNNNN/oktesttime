@@ -131,6 +131,7 @@ let commands = [
         command: ["broadcast"],
         description: "Broadcast a message to all players.",
         level: 2,
+        hidden: true,
         run: ({ args, socket }) => {
             if (!args[0]) {
                 socket.talk("m", 5_000, "No message specified.");
