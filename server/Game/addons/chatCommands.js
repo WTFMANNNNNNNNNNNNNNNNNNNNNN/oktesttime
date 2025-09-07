@@ -89,41 +89,48 @@ let commands = [
                 socket.talk("Em", 10_000, JSON.stringify(lines));
             }
             if (!args[0]) sendAvailableArenaMessage(); else {
-                if (args[0] == "size") {
-                    if (args[1] == "dynamic") {
-                        if (!Config.SANDBOX) return socket.talk("m", 3_000, "This command is only available on sandbox.");
-                        gameManager.room.settings.sandbox.do_not_change_arena_size = false;
-                    } else {
-                        if (!args[1]) return socket.talk("m", 3_000, "Invalid arguments.");
-                        if (!args[2]) return socket.talk("m", 3_000, "Invalid arguments.");
-                        if (args[1] % 2 === 0 && args[2] % 2 === 0) {
-                            if (Config.SANDBOX) gameManager.room.settings.sandbox.do_not_change_arena_size = true;
-                            gameManager.updateBounds(args[1] * 30, args[2] * 30);
-                        } else socket.talk("m", 3_000, "Arena size must be even.");
-                    }
-                } else if (args[0] == "team") {
-                    if (!args[1]) return socket.talk("m", 3_000, "Invalid argument.");
-                    if (args[1] == "0") {
-                        Config.MODE = "ffa";
-                        Config.TEAMS = null;
-                        socket.rememberedTeam = undefined;
-                    } else {
-                        Config.MODE = "tdm";
-                        Config.TEAMS = args[1];
-                        socket.rememberedTeam = undefined;
-                    }
-                } else if (args[0] == "spawnpoint") {
-                    if (!args[1]) return socket.talk("m", 3_000, "Invalid arguments.");
-                    if (!args[2]) return socket.talk("m", 3_000, "Invalid arguments.");
-                    socket.talk("m", 4_000, "Spawnpoint set.");
-                    global.spawnPoint = {
-                        x: parseInt(args[1] * 30),
-                        y: parseInt(args[2] * 30),
-                    }
-                } else if (args[0] == "close") {
-                    util.warn(`${socket.player.body.name == "" ? `A unnamed player (ip: ${socket.ip})` : socket.player.body.name} has closed the arena.`);
-                    gameManager.closeArena();
-                } else socket.talk("m", 4_000, "Unknown subcommand.");
+                switch (args[0]) {
+                    case "size":
+                        if (args[1] === "dynamic") {
+                            if (!Config.SANDBOX) return socket.talk("m", 3000, "This command is only available on sandbox.");
+                            gameManager.room.settings.sandbox.do_not_change_arena_size = false;
+                        } else {
+                            if (!args[1] || !args[2]) return socket.talk("m", 3000, "Invalid arguments.");
+                            if (args[1] % 2 === 0 && args[2] % 2 === 0) {
+                                if (Config.SANDBOX) gameManager.room.settings.sandbox.do_not_change_arena_size = true;
+                                gameManager.updateBounds(args[1] * 30, args[2] * 30);
+                            } else {
+                                socket.talk("m", 3000, "Arena size must be even.");
+                            }
+                        }
+                        break;
+                    case "team":
+                        if (!args[1]) return socket.talk("m", 3000, "Invalid argument.");
+                        if (args[1] === "0") {
+                            Config.MODE = "ffa";
+                            Config.TEAMS = null;
+                            socket.rememberedTeam = undefined;
+                        } else {
+                            Config.MODE = "tdm";
+                            Config.TEAMS = args[1];
+                            socket.rememberedTeam = undefined;
+                        }
+                        break;
+                    case "spawnpoint":
+                        if (!args[1] || !args[2]) return socket.talk("m", 3000, "Invalid arguments.");
+                        socket.talk("m", 4000, "Spawnpoint set.");
+                        global.spawnPoint = {
+                            x: parseInt(args[1] * 30),
+                            y: parseInt(args[2] * 30),
+                        };
+                        break;
+                    case "close":
+                        util.warn(`${socket.player.body.name === "" ? `A unnamed player (ip: ${socket.ip})` : socket.player.body.name} has closed the arena.`);
+                        gameManager.closeArena();
+                        break;
+                    default:
+                        socket.talk("m", 4000, "Unknown subcommand.");
+                }
             }
         }
     },
