@@ -66,13 +66,10 @@ let commands = [
         description: "Enable or disable chat",
         level: 0,
         run: ({ socket }) => {
-            if (!socket.status.disablechat) {
-                socket.status.disablechat = true;
+            socket.status.disablechat = socket.status.disablechat ?? false;
+            socket.talk("m", 3_000, `In-game chat ${socket.status.disablechat ? "enabled" : "disableed"}`);
                 socket.talk("m", 3_000, "In-game chat disabled.");
-            } else {
-                socket.status.disablechat = false;
                 socket.talk("m", 3_000, "In-game chat enabled.");
-            }
         }
     },
     {
