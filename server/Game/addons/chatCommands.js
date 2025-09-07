@@ -161,7 +161,7 @@ let commands = [
                 socket.talk("Em", 10_000, JSON.stringify(lines));
             }
             let command = args[0];
-            if (command == "reloaddefs" || command == "redefs") {
+            if (command === "reloaddefs" || command === "redefs") {
                 /* IMPORT FROM (defsReloadCommand.js) */
                 if (!global.reloadDefinitionsInfo) {
                     global.reloadDefinitionsInfo = {
@@ -174,7 +174,7 @@ let commands = [
                 if (sinceLastReload < 5000) {
                     socket.talk('m', Config.MESSAGE_DISPLAY_TIME, `Wait ${Math.floor((5000 - sinceLastReload) / 100) / 10} seconds and try again.`);
                     return;
-                };
+                }
                 // Set the timeout timer ---
                 lastReloadTime = time;
 
@@ -209,7 +209,7 @@ let commands = [
 
                 // Redefine all tanks and bosses
                 for (let entity of entities.values()) {
-                    // If it's a valid type and it's not a turret
+                    // If it's a valid type, and it's not a turret
                     if (!['tank', 'miniboss', 'food'].includes(entity.type)) continue;
                     if (entity.bond) continue;
 
