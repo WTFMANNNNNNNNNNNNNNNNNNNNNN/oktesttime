@@ -45,19 +45,27 @@ let commands = [
                     socket.status.forceNewBroadcast = true;
                     socket.talk("m", 4_000, "Leaderboard changed.");
                 }
-                if (args[0] == "default") {
-                    socket.status.selectedLeaderboard = "default";
-                    sendMessage();
-                } else if (args[0] == "players") {
-                    socket.status.selectedLeaderboard = "players";
-                    sendMessage();
-                } else if (args[0] == "bosses") {
-                    socket.status.selectedLeaderboard = "bosses";
-                    sendMessage();
-                } else if (args[0] == "global") {
-                    socket.status.selectedLeaderboard = "global";
-                    sendMessage();
-                } else sendAvailableLeaderboardMessage();
+                switch (args[0]) {
+                    case "default":
+                        socket.status.selectedLeaderboard = "default";
+                        sendMessage();
+                        break;
+                    case "players":
+                        socket.status.selectedLeaderboard = "players";
+                        sendMessage();
+                        break;
+                    case "bosses":
+                        socket.status.selectedLeaderboard = "bosses";
+                        sendMessage();
+                        break;
+                    case "global":
+                        socket.status.selectedLeaderboard = "global";
+                        sendMessage();
+                        break;
+                    default:
+                        sendAvailableLeaderboardMessage();
+                        break;
+                }
             }
         }
     },
