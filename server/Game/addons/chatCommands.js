@@ -276,6 +276,7 @@ function runCommand(socket, message, gameManager) {
             } catch (e) {
                 console.error("Error while running ", commandName);
                 console.error(e);
+                socket.talk("m", 5_000, "An error occurred while running this command.");
             }
         } else socket.talk("m", 5_000, "You do not have access to this command.");
     } else socket.talk("m", 5_000, "Unknown command.");
