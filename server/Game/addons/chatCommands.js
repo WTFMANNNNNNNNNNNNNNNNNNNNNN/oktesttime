@@ -128,6 +128,19 @@ let commands = [
         }
     },
     {
+        command: ["broadcast"],
+        description: "Broadcast a message to all players.",
+        level: 2,
+        run: ({ args, socket }) => {
+            if (!args[0]) {
+                socket.talk("m", 5_000, "No message specified.");
+            }
+            else {
+                gameManager.socketManager.broadcast(args.join(" "));
+            }
+        }
+    },
+    {
         command: ["developer", "dev"],
         description: "Developer commands, go troll some players or just take a look for yourself.",
         level: 3,
