@@ -79,11 +79,11 @@ let commands = [
             let sendAvailableArenaMessage = () => {
                 let lines = [
                     "Help menu:",
-                    "- $ arena size dynamic - Make the size of the arena dynamic, depending on the number of players",
-                    "- $ arena size <width> <height> - Set the size of the arena",
-                    "- $ arena team <team> - Set the number of teams, from 0 (FFA) to 4 (4TDM)",
-                    "- $ arena spawnpoint [x] [y] - Set a location where all players spawn on default",
-                    "- $ arena close - Close the arena",
+                    `- ${prefix} arena size dynamic - Make the size of the arena dynamic, depending on the number of players`,
+                    `- ${prefix} arena size <width> <height> - Set the size of the arena`,
+                    `- ${prefix} arena team <team> - Set the number of teams, from 0 (FFA) to 4 (4TDM)`,
+                    `- ${prefix} arena spawnpoint [x] [y] - Set a location where all players spawn on default`,
+                    `- ${prefix} arena close - Close the arena`,
                 ];
                 if (!Config.SANDBOX) lines.splice(1, 1)
                 socket.talk("Em", 10_000, JSON.stringify(lines));
