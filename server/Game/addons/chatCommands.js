@@ -261,7 +261,7 @@ let commands = [
                     util.warn(`[IMPORTANT] Definitions are successfully reloaded on server ${gameManager.gamemode} (${gameManager.webProperties.id})!`);
                     gameManager.gameHandler.run();
                 }, 1000)
-            } else socket.talk("m", 4_000, "Unknown subcommand, here's a help list."), sendAvailableDevCommandsMessage();
+            } else sendAvailableDevCommandsMessage();
         },
     },
 ]
