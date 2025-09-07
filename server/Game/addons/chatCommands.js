@@ -34,39 +34,30 @@ let commands = [
             let sendAvailableLeaderboardMessage = () => {
                 let lines = [
                     "Available leaderboards:",
-                    "- default",
-                    "- players",
-                    "- bosses",
-                    "- global",
+                    ...leaderboards.map(lb => `- ${lb}`)
                 ];
                 socket.talk("Em", 10_000, JSON.stringify(lines));
+            };
+
+            const leaderboards = [
+                "default",
+                "players",
+                "bosses",
+                "global",
+            ];
+            const choice = args[0];
+
+            if (!choice) {
+                sendAvailableLeaderboardMessage(socket);
+                return;
             }
-            if (!args[0]) sendAvailableLeaderboardMessage(); else {
-                let sendMessage = () => {
-                    socket.status.forceNewBroadcast = true;
-                    socket.talk("m", 4_000, "Leaderboard changed.");
-                }
-                switch (args[0]) {
-                    case "default":
-                        socket.status.selectedLeaderboard = "default";
-                        sendMessage();
-                        break;
-                    case "players":
-                        socket.status.selectedLeaderboard = "players";
-                        sendMessage();
-                        break;
-                    case "bosses":
-                        socket.status.selectedLeaderboard = "bosses";
-                        sendMessage();
-                        break;
-                    case "global":
-                        socket.status.selectedLeaderboard = "global";
-                        sendMessage();
-                        break;
-                    default:
-                        sendAvailableLeaderboardMessage();
-                        break;
-                }
+
+            if (leaderboards.includes(choice)) {
+                socket.status.selectedLeaderboard = choice;
+                socket.status.forceNewBroadcast = true;
+                socket.talk("m", 4_000, "Leaderboard changed.");
+            } else {
+                socket.talk("m", 4_000, "Unknown leaderboard.");
             }
         }
     },
