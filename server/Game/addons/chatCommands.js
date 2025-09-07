@@ -74,7 +74,7 @@ let commands = [
     },
     {
         command: ["arena"],
-        description: "Enable or disable chat",
+        description: "Manage the arena",
         level: 1,
         hidden: true,
         run: ({ socket, args, gameManager }) => {
