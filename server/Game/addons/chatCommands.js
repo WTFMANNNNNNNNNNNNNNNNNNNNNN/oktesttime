@@ -4,6 +4,7 @@ const prefix = "$";
 let commands = [
   {
         command: ["help"],
+        description: "Show this help menu.",
         level: 0,
         run: ({ socket, level }) => {
             let useOldMenu = false;
