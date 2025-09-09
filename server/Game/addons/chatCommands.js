@@ -290,6 +290,19 @@ function runCommand(socket, message, gameManager) {
 
     return true;
 }
+global.addChatCommand = function (command) {
+    if (!command.command || !command.run) {
+        throw new Error("Invalid command format. A command must have at least a 'command' and a 'run' property.");
+    }
+    if (!Array.isArray(command.command)) {
+        throw new Error("Invalid command format. The 'command' property must be an array of strings.");
+    }
+    if (commands.find(c => c.command.some(cmd => command.command.includes(cmd)))) {
+        throw new Error("A command with this name already exists.");
+    }
+    commands.push(command);
+}
+
 
 /** CHAT MESSAGE EVENT **/
 module.exports = ({ Events }) => {
