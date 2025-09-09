@@ -66,5 +66,27 @@ class serverTravelHandler {
         }
     }
 }
+if (loadedAddons.includes("chatCommands")) {
+    addChatCommand({
+        command: ["join", "j"],
+        description: "Connects you to another server",
+        level: 3,
+        hidden: true,
+        run: ({ args, socket }) => {
+            if (!args[0]) {
+                socket.talk("m", 5_000, "No server specified.");
+                return;
+            }
+            let server = Config.SERVERS.find(
+                s => s.SERVER_ID === args[0]
+            );
+            if (!server) {
+                socket.talk("m", 5_000, "Server not found.");
+                return;
+            }
+            global.gameManager.socketManager.sendToServer(socket, `http://${server.HOST}`);
+        }
+    })
+}
 
 module.exports = { serverTravelHandler }
