@@ -408,7 +408,7 @@ class socketManager {
                     "autofire",
                     "override",
                     "autoalt",
-                    "spinlock" //spinlock does something both in client and server side
+                    "spinlock" //spinlock does something both in the client and server side
                 ][tog];
     
                 // Kick if it sent us shit.
@@ -1046,7 +1046,7 @@ class socketManager {
     }
     newPlayer(socket) {
         let { player, loc } = this.getSpawnLocation(socket.rememberedTeam);
-        // Save the the player (temporaily as we are still connecting.)
+        // Save the player (temporarily as we are still connecting.)
         player.socket = socket;
         // Focus on the new location
         socket.camera.x = loc.x;
@@ -1097,7 +1097,7 @@ class socketManager {
                 socket.talk("z", body.nameColor);
             }
             body.become(player); // become it so it can speak and listen.
-            socket.spectateEntity = null; // Dont break the camera.
+            socket.spectateEntity = null; // don't break the camera.
             body.invuln = true;
         }
         player.body = body;
@@ -1163,7 +1163,7 @@ class socketManager {
         }
         // Set up the player's gui
         player.gui = this.newgui(player);
-        // Save the the player
+        // Save the player
         player.socket = socket;
         this.players.push(player);
         // Focus on the new player
@@ -1289,7 +1289,7 @@ class socketManager {
         if (find) {
             // This function generates the mockup.
             buildMockup(find, global.gameManager);
-            // Okay now we are able to find it without any problems.
+            // Okay, now we are able to find it without any problems.
             mock = mockupData.find(o => o.index === `${index}`);
         } else mock = null;
 
@@ -1300,7 +1300,7 @@ class socketManager {
         for (let splittedIndex of index.toString().split("-")) {
             if (socket.status.mockupData.receivedIndexes.includes(splittedIndex)) continue; // Do NOT continue if we have the mockup already.
 
-            let index = parseInt(splittedIndex); // Parse it, without this wont work for some reason.
+            let index = parseInt(splittedIndex); // Parse it, without this won't work for some reason.
             // Now we need to find the mockup.
             let mockup = mockupData.find(o => o.index === `${index}`);
             if (!mockup) { // If not, then make one.
@@ -1311,15 +1311,15 @@ class socketManager {
             socket.talk("M", index, JSON.stringify(mockup));
             // Also push it to the socket's status so we know it.
             socket.status.mockupData.receivedMockups.push(mockup);
-            // Push the index so the function doesnt run a thousens of times.
+            // Push the index so the function doesn't run a thousands of times.
             socket.status.mockupData.receivedIndexes.push(splittedIndex);
             // Now we need the turret mockups.
             for (let turrets of mockup.turrets) {
-                // Run the same function but it targets the turret mockups.
+                // Run the same function, but it targets the turret mockups.
                 this.sendMockup(turrets.index, socket);
             }
             if (mockup.sendAllMockups) { // Send all of its upgrades if needed to prevent bugs.
-                // Target the upgrades
+                // Target upgrades
                 for (let upgrades of mockup.upgrades) {
                     for (let i of upgrades.index.split("-")) { // Split the indexes.
                         this.sendMockup(i, socket);
@@ -1385,7 +1385,7 @@ class socketManager {
                     // If we are dead, then let the client know.
                     if (player.body.isDead()) {
                         let purge = () => player.body = null; // Remove our bonded body.
-                        if (player.body.store && player.body.store.dragInterval) { // If we are still dragging a entity, clear it and delete it.
+                        if (player.body.store && player.body.store.dragInterval) { // If we are still dragging an entity, clear it and delete it.
                             clearInterval(player.body.store.dragInterval);
                             delete player.body.store.dragInterval;
                         }
@@ -1416,7 +1416,7 @@ class socketManager {
                         player.viewId = player.body.id;
                     }
                 } 
-                if (player.body == null) { // if we have no body, then u dead bro.
+                if (player.body == null) { // if we have nobody, then u dead bro.
                     fovNow = 2000;
                     camera.scoping = false; // No scoping bugs!
                     if (socket.spectateEntity != null) { // If we want to spectate someone, we spectate it.
@@ -1426,7 +1426,7 @@ class socketManager {
                         }
                     }
                 }
-                // The only reason this exists is because the client is smoothing to its updated fov, and so server does it the same.
+                // The only reason this exists is that the client is smoothing to its updated fov, and so the server does it the same.
                 camera.fov += (fovNow - camera.fov) / 30;
 
                 // Grab entities that we can see
@@ -1957,7 +1957,7 @@ class socketManager {
         });
         socket.initMockupList = () => {
             return {
-                receivedIndexes: [], // The only reason why this exist is because to prevent lags from the socket gazeUpon, You can find it out by removing this.
+                receivedIndexes: [], // The only reason why this exist is that to prevent lags from the socket gazeUpon, You can find it out by removing this.
                 receivedMockups: [],
                 receivedUpgradePackMockups: [],
                 requestMockups: [],

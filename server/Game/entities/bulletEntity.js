@@ -587,7 +587,7 @@ class bulletEntity { // Basically an (Entity) but with heavy limitations to impr
     destroy() {
         // Remove this from views
         global.gameManager.views.forEach(v => v.remove(this));
-        // Remove bullet from bullet list if needed and the only reason it exists is for bacteria.
+        // Remove bullet from bullet list if needed, and the only reason it exists is for bacteria.
         if (this.bulletparent != null) util.remove(this.bulletparent.bulletchildren, this.bulletparent.bulletchildren.indexOf(this))
         // Remove from parent lists if needed
         if (this.parent != null) util.remove(this.parent.children, this.parent.children.indexOf(this));

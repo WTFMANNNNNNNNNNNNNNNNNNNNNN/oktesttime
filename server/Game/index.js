@@ -431,7 +431,7 @@ class gameHandler {
         this.active = true;
         let gameLoop = setInterval(() => {
             if (!this.active) return clearInterval(gameLoop);
-            if (global.gameManager.clients.length >= 1) { // If there arent clients in the server, then just dont run the run function.
+            if (global.gameManager.clients.length >= 1) { // If there aren't clients in the server, then just don't run the run function.
                 try {
                     this.gameloop();
                     if (Config.ENABLE_FOOD) this.foodloop();

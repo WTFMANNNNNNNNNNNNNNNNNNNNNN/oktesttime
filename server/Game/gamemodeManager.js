@@ -43,7 +43,7 @@ class gamemodeManager {
                 console.log(global.gameManager.lagLogger.sum.map(entry => `Run at: ${entry.at}. Time: ${entry.time}.`).join("\n"));
             }
         }
-        if (type == "quickloop") { // Mainly for sandbox and trainwars only, but you can also put your own gamemode loop here incase the regular loop doesnt fit.
+        if (type == "quickloop") { // Mainly for sandbox and trainwars only, but you can also put your own gamemode loop here incase the regular loop doesn't fit.
             if (Config.SANDBOX) this.gameSandbox.update();
             if (Config.TRAIN) this.gameTrain.loop();
         }

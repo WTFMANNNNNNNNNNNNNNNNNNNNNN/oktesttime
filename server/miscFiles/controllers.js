@@ -38,10 +38,10 @@ let compressMovementOffsets = [
         );
     },
     // me: { ...Vector }
-    // enemy: data to calculte where it is gonna be soon
+    // enemy: data to calculate where it is gonna be soon
     // walls: Array<{ ...Vector, hitboxRadius, hitbox: Array<[Vector, Vector]> }>
     wouldHitWall = (me, enemy) => {
-        // thing for culling off walls where theres no point of checking
+        // thing for culling off walls where there's no point of checking
         let inclusionCircle = {
             x: (me.x + enemy.x) / 2,
             y: (me.y + enemy.y) / 2,
@@ -507,7 +507,7 @@ class io_nearestDifferentMaster extends IO {
             range = 640 * this.body.FOV;
         }
         !Number.isFinite(tracking) && (tracking = this.body.topSpeed);
-        // Lets see if the entity still lives
+        // Let's see if the entity still lives
         if (this.targetLock && (
             !this.validate(this.targetLock, this.body, this.body.master.master, range * range, range * range * 4 / 3) ||
             this.wouldHitWall(this.body, this.targetLock) // Very expensive

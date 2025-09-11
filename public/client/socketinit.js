@@ -441,7 +441,7 @@ function Status() {
 // Make a converter
 const process = (z = {}) => {
     global.loggers.processEntities.set();
-    let isNew = z.facing == null; // For whatever reason arguments.length is uglified poorly...
+    let isNew = z.facing == null; // For whatever reason, arguments.length is uglified poorly...
     // Figure out what kind of data we're looking at
     let type = get.next();
     // Handle it appropiately
@@ -460,7 +460,7 @@ const process = (z = {}) => {
     } else { // issa something real
         z.interval = global.metrics.rendergap;
         z.id = get.next();
-        // Determine if this is an new entity or if we already know about it
+        // Determine if this is a new entity or if we already know about it
         let i = global.entities.findIndex(x => x.id === z.id);
         if (i !== -1) {
             // remove it if needed (this way we'll only be left with the dead/unused entities)
@@ -878,7 +878,7 @@ let incoming = async function(message, socket) {
                     delta: delta,
                     latency: laten,
                 });
-                // Do it again a couple times
+                // Do it again a couple of times
                 if (sync.length < 10) {
                     // Erase entities if resync is needed.
                     if (startSettings.neededtoresync) global.entities = [];
@@ -897,7 +897,7 @@ let incoming = async function(message, socket) {
                         startSettings.allowtostartgame = true;
                         global.pullSkillBar = false;
                         global.pullUpgradeMenu = false;
-                        socket.talk("NWB"); // Ask for new broadcast.
+                        socket.talk("NWB"); // Ask for a new broadcast.
                     }
                     global.gameUpdate = true;
                     global.metrics.rendertimes = 1;
