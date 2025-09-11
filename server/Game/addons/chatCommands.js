@@ -125,7 +125,7 @@ let commands = [
                         };
                         break;
                     case "close":
-                        util.warn(`${socket.player.body.name === "" ? `A unnamed player (ip: ${socket.ip})` : socket.player.body.name} has closed the arena.`);
+                        util.warn(`${socket.player.body.name === "" ? `An unnamed player (ip: ${socket.ip})` : socket.player.body.name} has closed the arena.`);
                         gameManager.closeArena();
                         break;
                     default:
