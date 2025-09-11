@@ -92,10 +92,10 @@ let commands = [
                 switch (args[0]) {
                     case "size":
                         if (args[1] === "dynamic") {
-                            if (!Config.SANDBOX) return socket.talk("m", 3000, "This command is only available on sandbox.");
+                            if (!Config.SANDBOX) return socket.talk("m", 3_000, "This command is only available on sandbox.");
                             gameManager.room.settings.sandbox.do_not_change_arena_size = false;
                         } else {
-                            if (!args[1] || !args[2]) return socket.talk("m", 3000, "Invalid arguments.");
+                            if (!args[1] || !args[2]) return socket.talk("m", 3_000, "Invalid arguments.");
                             if (args[1] % 2 === 0 && args[2] % 2 === 0) {
                                 if (Config.SANDBOX) gameManager.room.settings.sandbox.do_not_change_arena_size = true;
                                 gameManager.updateBounds(args[1] * 30, args[2] * 30);
@@ -105,7 +105,7 @@ let commands = [
                         }
                         break;
                     case "team":
-                        if (!args[1]) return socket.talk("m", 3000, "Invalid argument.");
+                        if (!args[1]) return socket.talk("m", 3_000, "Invalid argument.");
                         if (args[1] === "0") {
                             Config.MODE = "ffa";
                             Config.TEAMS = null;
@@ -117,8 +117,8 @@ let commands = [
                         }
                         break;
                     case "spawnpoint":
-                        if (!args[1] || !args[2]) return socket.talk("m", 3000, "Invalid arguments.");
-                        socket.talk("m", 4000, "Spawnpoint set.");
+                        if (!args[1] || !args[2]) return socket.talk("m", 3_000, "Invalid arguments.");
+                        socket.talk("m", 4_000, "Spawnpoint set.");
                         global.spawnPoint = {
                             x: parseInt(args[1] * 30),
                             y: parseInt(args[2] * 30),
@@ -129,7 +129,7 @@ let commands = [
                         gameManager.closeArena();
                         break;
                     default:
-                        socket.talk("m", 4000, "Unknown subcommand.");
+                        socket.talk("m", 4_000, "Unknown subcommand.");
                 }
             }
         }
