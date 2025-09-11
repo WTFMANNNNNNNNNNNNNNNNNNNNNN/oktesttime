@@ -913,7 +913,7 @@ let incoming = async function(message, socket) {
         case 'RE': {
             global.mockups = [];
             global.entities = [];
-        }
+        } break;
         case 'CC': {
             global.cached = {};
         } break;
