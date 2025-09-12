@@ -180,7 +180,7 @@ class Gun extends EventEmitter {
     }
 
     spawnBullets(useWhile, shootPermission) {
-        // Find gun's current angle position and length
+        // Find gun's current angle, position and length
         let angle1 = this.direction + this.angle + this.body.facing,
             angle2 = this.angle + this.body.facing,
             gunlength = this.length + this.spawnOffset * this.width * this.settings.size / 2,
@@ -228,7 +228,7 @@ class Gun extends EventEmitter {
                 this.destroyOldest();
             }
         }
-        // Dont shoot when invuln/not active
+        // don't shoot when invuln/not active
         if (this.body.master.invuln || !this.body.master.activation.check()) {
             shootPermission = false;
         }

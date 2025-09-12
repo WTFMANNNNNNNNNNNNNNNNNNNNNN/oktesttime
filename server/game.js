@@ -163,7 +163,7 @@ class gameServer {
         if (!this.parentPort) {
             // Start the server
             this.start();
-            // Send the info to the main server so the client can get the info. (in a expensive way)
+            // Send the info to the main server so the client can get the info. (in an expensive way)
             for (let i = 0; i < global.servers.length; i++) {
                 let server = global.servers[i];
                 if (server.loadedViaMainServer) global.servers[i] = this.getInfo(true);
@@ -317,7 +317,7 @@ class gameServer {
         // Set properties.
         this.setRoomProperties();
 
-        // And bunch of functions to it
+        // And a bunch of functions to it
 
         // Are we in the room?
         this.room.isInRoom = location => {
@@ -333,7 +333,7 @@ class gameServer {
             };
         };
 
-        // Get random position in the room
+        // Get a random position in the room
         this.room.random = () => {
             return {
                 x: ran.irandom(this.room.width) - this.room.width / 2,
@@ -383,7 +383,7 @@ class gameServer {
         });
     }
 
-    // Setup the room
+    // Set up the room
     setRoom() {
         // Get the room setup(s)
         for (let filename of Config.ROOM_SETUP) {
@@ -434,7 +434,7 @@ class gameServer {
             }
         }
 
-        // If client doesn't yet know what are we doing, broadcast it to him.
+        // If a client doesn't yet know what are we doing, broadcast it to him.
         // But only once
         if (this.room.sendColorsToClient) {
             this.room.sendColorsToClient = false;
@@ -444,7 +444,7 @@ class gameServer {
 
     // Arena closers here we come
     closeArena() {
-        // Check if arena is closed
+        // Check if the arena is closed
         if (this.arenaClosed) return;
         // Log this
         util.saveToLog("Game Instance Ending", "Game running " + this.gamemode + " at `" + this.gamemode + "` is now closing.", 0xEE4132);

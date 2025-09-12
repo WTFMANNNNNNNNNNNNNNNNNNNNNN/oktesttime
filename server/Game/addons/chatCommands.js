@@ -125,7 +125,7 @@ let commands = [
                         };
                         break;
                     case "close":
-                        util.warn(`${socket.player.body.name === "" ? `A unnamed player (ip: ${socket.ip})` : socket.player.body.name} has closed the arena.`);
+                        util.warn(`${socket.player.body.name === "" ? `An unnamed player (ip: ${socket.ip})` : socket.player.body.name} has closed the arena.`);
                         gameManager.closeArena();
                         break;
                     default:
@@ -249,7 +249,7 @@ let commands = [
                         socket.status.mockupData = socket.initMockupList();
                         socket.status.selectedLeaderboard2 = socket.status.selectedLeaderboard;
                         socket.status.selectedLeaderboard = "stop";
-                        socket.talk("RE"); // Also reset the global.entities in client so it can refresh.
+                        socket.talk("RE"); // Also reset the global.entities in the client so it can refresh.
                         if (Config.LOAD_ALL_MOCKUPS) for (let i = 0; i < mockupData.length; i++) {
                             socket.talk("M", mockupData[i].index, JSON.stringify(mockupData[i]));
                         }

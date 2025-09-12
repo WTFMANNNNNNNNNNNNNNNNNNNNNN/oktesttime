@@ -842,6 +842,6 @@ function init() {
 }
 
 
-// If you dont want to add the key commands, just uncomment the return line.
+// If you don't want to add the key commands, just uncomment the return line.
 // return;
 init();

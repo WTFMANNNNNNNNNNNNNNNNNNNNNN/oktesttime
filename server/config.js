@@ -17,14 +17,16 @@ module.exports = {
     // Start up logs and Log speed loop warnings
     LOGS: true,
 
-    // If set to true, it loads all mockups and doesnt needs to generate while ingame. If set to false, does require need to generate mockups ingame but starts the main server instantly.
+    // If set to true, it loads all mockups and doesn't needs to generate while ingame. If set to false, does require need to generate mockups ingame but starts the main server instantly.
     LOAD_ALL_MOCKUPS: false,
 
     // Servers
     // This is where your server's settings are stored.
     SERVERS: [
         {
-            // This is important and usefull, if your VM (Your machine that hosts the website stuff) doesnt support multi ports, you are forced to set this to true because it will load via through the main server.
+            // This is important and usefull,
+            // if your VM (Your machine that hosts the website stuff) doesn't support multi ports,
+            // you are forced to set this to true because it will load via through the main server.
             LOAD_ON_MAINSERVER: false,
             // This is very important where the host is actually being hosted. Keep in mind that the ports gets changed to 3000, to 3001, and it repeats with the other servers.
             // Keep in mind that if "LOAD_ON_MAINSERVER" is set to true then this code will be replaced with the main server's host instead.
@@ -41,7 +43,7 @@ module.exports = {
             // The server ID. Example: (<Yourwebsitename>/#<ServerID>)
             // Important! You cannot make the same server id with a other one or else the server selector will get confused.
             SERVER_ID: "loc",
-            // This is where you can override settings in the config.js file, and as long the gamemode's config doesnt override it.
+            // This is where you can override settings in the config.js file, and as long the gamemode's config doesn't override it.
             PROPERTIES: {
                 // Amount of bots.
                 BOTS: 5,
@@ -112,7 +114,7 @@ module.exports = {
     LEVEL_SKILL_POINT_FUNCTION: level => {
         if (level < 2) return 0;
         if (level <= 40) return 1;
-        if (level <= 45 && level & 1 === 1) return 1;
+        if (level <= 45 && level) return 1;
         return 0;
     },
 
@@ -149,7 +151,7 @@ module.exports = {
     // The chances of a player-bot upgrading a specific amount of times before it stops upgrading.
     BOT_CLASS_UPGRADE_CHANCES: [1, 5, 20, 37, 37],
 
-    // The prefix of the player-bots' names.
+    // The prefix of the player-bots names.
     BOT_NAME_PREFIX: '[AI] ',
 
     // The class that players and player-bots spawn as.
@@ -158,14 +160,14 @@ module.exports = {
     // How every entity regenerates their health.
     REGENERATE_TICK: 100,
 
-    // How many members a team can have in comparison to an unweighed team.
+    // How many members a team can have in comparison to an unweighted team.
     // Example: Lets say we have team A and B. If the weigh of A is 2 and B is 1, then the game will try to give A twice as many members as B.
     TEAM_WEIGHTS: {},
 
     // Natural Spawns
 
     // The delay (in seconds) between the boss spawns being announced and the bosses actually spawning.
-    // NOTE: The spawn message (ex. "A strange trembling...") takes half as long to appear than the boss.
+    // NOTE: The spawn message (ex. "A strange trembling...") takes half as long to appear as the boss.
     BOSS_SPAWN_DURATION: 5,
 
     // The possible food types that can spawn.

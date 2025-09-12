@@ -34,7 +34,7 @@ After doing that, your server should be ready!
 
 ## Server setup
 
-You can setup in-game servers in config.js file, in `SERVERS`. For further exlanation see the setting itself. It's an array of objects were each object is a server.
+You can set up in-game servers in config.js file, in `SERVERS`. For further explanation, see the setting itself. It's an array of objects was each object is a server.
 
 ## Setup server travel
 
@@ -48,7 +48,7 @@ SERVER_TRAVEL_PROPERTIES: {
 },
 SERVER_TRAVEL: [
     {
-        IP: "<YourIP>", // Dont add "https://" or this "/".
+        IP: "<YourIP>", // don't add "https://" or this "/".
         PORTAL_PROPERTIES: {
             SPAWN_CHANCE: 3,
             COLOR: 12
@@ -67,7 +67,7 @@ Paste as `IP` you destination server IP address.
 `AMOUNT` is the amount of portals to spawn.
 
 
-After you set this up, you can now launch the game an see if a portal spawns.
+After you set this up, you can now launch the game and see if a portal spawns.
 
 Before you launch the server, You need to set `ALLOW_SERVER_TRAVEL` to true in your destination server's `PROPERTIES`.
 
@@ -83,4 +83,4 @@ Now everything should work, if you find any problems, contact support by joining
 ## Other Links
 - [Our Discord server](https://discord.gg/kvCAZfUCjy)
 
-*p.s. if something goes terribly wrong it's not our fault*
+*p.s. if something goes terribly wrong, it's not our fault*

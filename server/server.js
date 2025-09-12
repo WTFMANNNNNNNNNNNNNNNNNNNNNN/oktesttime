@@ -244,7 +244,7 @@ global.onServerLoaded = () => {
 // Start the HTTP Server & Load Game Servers
 server.listen(Config.port, () => {
     Config.SERVERS.forEach(server => {
-        // Load all of the servers.
+        // Load all the servers.
         loadGameServer(
             server.LOAD_ON_MAINSERVER, 
             server.HOST,

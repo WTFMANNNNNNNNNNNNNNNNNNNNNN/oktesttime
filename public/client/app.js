@@ -330,7 +330,7 @@ import * as socketStuff from "./socketinit.js";
                 e !== g &&
                     (buttonTabs.children[e].classList.remove("active"), // Remove the active class
                         buttonTabs.children[g].classList.add("active"), // Add the clicked active class
-                        (tabOptions[e].style.display = "none"), // Dont display the old menu.
+                        (tabOptions[e].style.display = "none"), // don't display the old menu.
                         (tabOptions[g].style.display = "block"), // Display the menu.
                         (e = g))
             });
@@ -744,7 +744,7 @@ import * as socketStuff from "./socketinit.js";
         document.getElementById("gameAreaWrapper").style.display = "block";
         document.getElementById("gameCanvas").focus();
         window.onbeforeunload = () => (global.gameStart && !global.died && !global.disconnected ? !0 : null);
-        // Start client if it didnt start yet
+        // Start client if it didn't start yet
         !global.clientStarted && startClient();
         // Load graphics
         loadGraphics();
@@ -1723,7 +1723,7 @@ import * as socketStuff from "./socketinit.js";
                         ctx[0].fillRect(top, bottom, left - top, right - bottom);
                         continue;
                     };
-                    if (tile.image) { // if a tile is a image, then get the image and render it.
+                    if (tile.image) { // if a tile is an image, then get the image and render it.
                         ctx[0].globalAlpha = 1;
                         if (!tile.renderImage) {
                             tile.renderImage = new Image();
@@ -2057,7 +2057,7 @@ import * as socketStuff from "./socketinit.js";
             }
 
             let K = Math.max(0, Math.min(1, time / 300, duration / 300));
-            if (msg.textJSON) { // If a message is like a big ass box then draw this instead.
+            if (msg.textJSON) { // If a message is like a big ass box, then draw this instead.
                 let len = 0;
                 // Give it a textobj if it doesn't have one
                 msg.textJSON.forEach((txt) => {
@@ -2070,7 +2070,7 @@ import * as socketStuff from "./socketinit.js";
                 // Draw the text
                 msg.textobjs = [];
                 msg.textJSON.forEach((txt) => {
-                    msg.textobjs[msg.textobjs.length] = function () { }; // For some reason this fixes the text's location i guess.
+                    msg.textobjs[msg.textobjs.length] = function () { }; // For some reason, this fixes the text's location, I guess.
                     drawText(txt, x - len / 2, y + 15 + 18 * (msg.textobjs.length - 1), height - 4, color.guiwhite, "left");
                 })
                 y += 23 * K + 18 * (3 - 2 * K) * (msg.textJSON.length - 1) * K * K;
@@ -2380,7 +2380,7 @@ import * as socketStuff from "./socketinit.js";
         ctx[2].save();
         ctx[2].fillStyle = color.white;
         global.advanced.roundMap ? drawGuiCircle(x + len / 2, y + height / 2, len / 2) : drawGuiRect(x, y, len, height);
-        ctx[2].beginPath(); // We will not allow to draw outside of the minimap so we are only allowing minimap entities to draw INSIDE the minimap only
+        ctx[2].beginPath(); // We will not allow to draw outside the minimap, so we are only allowing minimap entities to draw INSIDE the minimap only
         global.advanced.roundMap ? ctx[2].arc(x + len / 2, y + height / 2, len / 2, 0, 2 * Math.PI) : ctx[2].rect(x, y, len, height); // Draw everything inside the minimap
         ctx[2].clip();
 
@@ -2674,7 +2674,7 @@ import * as socketStuff from "./socketinit.js";
                 upgradeNum++;
             }
 
-            // Draw dont upgrade button
+            // Draw don't upgrade button
             let h = 19.1,
                 textScale = h - 6,
                 msg = "Don't Upgrade",
@@ -3294,7 +3294,7 @@ import * as socketStuff from "./socketinit.js";
         // Draw the game
         if (global.gameUpdate && !global.disconnected) {
             global.time = getNow();
-            if (isNaN(global.time)) { // If something isnt right, do a resync and pause the rendering.
+            if (isNaN(global.time)) { // If something isn't right, do a resync and pause the rendering.
                 global.gameUpdate = false;
                 global.pullUpgradeMenu = true;
                 global.pullSkillBar = true;
@@ -3342,7 +3342,7 @@ import * as socketStuff from "./socketinit.js";
             }
             if (global.GUIStatus.fullHDMode) ctx[2].translate(-0.5, -0.5);
     
-            //oh no we need to throw an error!
+            //oh no, we need to throw an error!
         } catch (e) {
             //hold on....
             drawErrorScreen(); // Draw the error screen.

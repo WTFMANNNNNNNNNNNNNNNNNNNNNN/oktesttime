@@ -605,7 +605,7 @@ class Entity extends EventEmitter {
         // Batch upgrades
         if (this.batchUpgrades && emitEvent) handleBatchUpgradeSplit(this); // Batch upgrades
 
-        // Make the entity targetble if they arent a bullet, etc.
+        // Make the entity targetable if they aren't a bullet, etc.
         const checkIfTargetAble = ["bullet", "drone", "swarm", "trap", "wall", "food", "unknown"];
         if (!checkIfTargetAble.includes(this.type)) {
             targetableEntities.set(this.id, this);
@@ -1280,7 +1280,7 @@ class Entity extends EventEmitter {
         if (i != -1) util.remove(global.gameManager.minimap, i);
         // Remove this from views
         global.gameManager.views.forEach(v => v.remove(this));
-        // Remove bullet from bullet list if needed and the only reason it exists is for bacteria.
+        // Remove bullet from bullet list if needed, and the only reason it exists is for bacteria.
         if (this.bulletparent != null) util.remove(this.bulletparent.bulletchildren, this.bulletparent.bulletchildren.indexOf(this))
         // Remove from parent lists if needed
         if (this.parent != null) util.remove(this.parent.children, this.parent.children.indexOf(this));
