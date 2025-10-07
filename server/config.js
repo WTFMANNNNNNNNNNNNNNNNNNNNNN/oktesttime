@@ -3,7 +3,7 @@ module.exports = {
 
     // Game server domain.
     // If the host is 'localhost:NUMBER', the NUMBER must be the port setting.
-    host: "localhost:3000",
+    host: "https://oktestingtime.netlify.app/",
 
     // Which port to run the web server on.
     port: 3000,
